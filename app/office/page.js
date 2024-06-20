@@ -1,7 +1,7 @@
- "use client";
+"use client";
 import Image from 'next/image';
-import { useState } from 'react';
-import EnquiryModal from './EnquiryModal.js';
+import { useState, useEffect } from 'react';
+import EnquiryModal from '@/components/EnquiryModal';
 
 const Brochure = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,13 +9,21 @@ const Brochure = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      openModal();
+    }, 15000); // 10 seconds
+
+    return () => clearInterval(interval); // Clear the interval on component unmount
+  }, []);
+
   return (
-    <div className="relative font-mono flex   flex-col md:flex-row items-center h-screen pt-8 bg-teal-900 ">
-      <div className="w-full bg-teal-900   md:w-1/2 pl-4   text-white">
+    <div className="relative font-mono flex flex-col md:flex-row items-center h-screen pt-8 bg-teal-900">
+      <div className="w-full bg-teal-900 md:w-1/2 pl-4 text-white">
         <h1 className="text-5xl font-bold">ARTISTIC INGENUITY</h1>
         <h2 className="mt-2 text-2xl">Meets Modern Spaces</h2>
         <p className="mt-4 text-lg leading-relaxed">
-          With its iconic architecture, unwavering sustainability, and strategic placement, in the vibrant Sector 142 of Noida, spread across 15 acres, ONE FNG stands as an emblematic architectural marvel poised to reshape the cityscape and elevate Noida's essence to new heights.  Here, shopping, dining, and entertainment seamlessly come together to create a dynamic and inviting space.
+          With its iconic architecture, unwavering sustainability, and strategic placement, in the vibrant Sector 142 of Noida, spread across 15 acres, ONE FNG stands as an emblematic architectural marvel poised to reshape the cityscape and elevate Noida's essence to new heights. Here, shopping, dining, and entertainment seamlessly come together to create a dynamic and inviting space.
         </p>
         <div className="mt-8">
           <h3 className="text-xl font-semibold">OFFICE SPACES</h3>
@@ -29,7 +37,7 @@ const Brochure = () => {
           <div className='mt-8 pb-4'>
             <button
               onClick={openModal}
-              className="px-8 py-4  bg-orange-500 text-white rounded hover:bg-orange-300 hover:text-black"
+              className="px-8 py-4 bg-orange-500 text-white rounded hover:bg-orange-300 hover:text-black"
             >
               DOWNLOAD BROCHURE
             </button>

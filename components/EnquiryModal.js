@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Head from 'next/head'; // Import Head from next/head
+import jsPDF from 'jspdf';
+import Head from 'next/head';  
 
 const EnquiryModal = ({ isOpen, onClose }) => {
   const router = useRouter();
@@ -33,9 +34,20 @@ const EnquiryModal = ({ isOpen, onClose }) => {
     return Object.keys(tempErrors).length === 0;
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text('Form Data', 10, 10);
+    doc.text(`Name: ${formData.name}`, 10, 20);
+    doc.text(`Email: ${formData.email}`, 10, 30);
+    doc.text(`Mobile: ${formData.mobile}`, 10, 40);
+    doc.text(`Message: ${formData.message}`, 10, 50);
+    doc.save('form-data.pdf');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      generatePDF();
       // Assuming the new page to redirect to is /thank-you
       router.push('/thank-you');
     }
@@ -44,29 +56,27 @@ const EnquiryModal = ({ isOpen, onClose }) => {
   return (
     <>
       <Head>
-        <span className= 'text-black'>Enquire One FNG</span> {/* Set the title for the page */}
+        <title>Enquire One FNG</title>
       </Head>
+      <h2 className="text-black bg-yellow-400">Enquire One FNG</h2>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white w-full max-w-4xl mx-4 sm:mx-auto flex flex-col md:flex-row rounded-lg overflow-hidden">
-          {/* Left Side - Image */}
           <div className="hidden md:block relative w-full md:w-1/2 h-64 md:h-auto">
             <Image
-              src="/background.jpg" // Update with your image path
+              src="/background.jpg"
               alt="Building"
               layout="fill"
               objectFit="cover"
               className="rounded-l-lg"
             />
           </div>
-
-          {/* Right Side - Form */}
           <div className="w-full md:w-1/2 p-8">
             <div className="flex justify-end">
               <button onClick={onClose} className="text-black text-2xl">
                 &times;
               </button>
             </div>
-            <h2 className="text-2xl font-bold mb-4 text-center">ENQUIRE ONE FNG</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center text-black">ENQUIRE ONE FNG</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input

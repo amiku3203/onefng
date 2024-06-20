@@ -23,15 +23,15 @@ const Header = () => {
           </div>
         </div>
         <nav className="hidden md:flex space-x-4">
-          <Link href="" className="text-gray-800 hover:text-gray-600">Overview</Link>
-          <Link href="" className="text-gray-800 hover:text-gray-600">Office</Link>
+          <Link href="/overview" className="text-gray-800 hover:text-gray-600">Overview</Link>
+          <Link href="/office" className="text-gray-800 hover:text-gray-600">Office</Link>
           <Link href="" className="text-gray-800 hover:text-gray-600">Retail</Link>
           <Link href="" className="text-gray-800 hover:text-gray-600">Highlights</Link>
           <Link href="" className="text-gray-800 hover:text-gray-600">Plans</Link>
           <Link href="" className="text-gray-800 hover:text-gray-600">Price List</Link>
-          <Link href="" className="text-gray-800 hover:text-gray-600">Amenities</Link>
-          <Link href="" className="text-gray-800 hover:text-gray-600">Location</Link>
-          <Link href="" className="text-gray-800 hover:text-gray-600">Gallery</Link>
+          <Link href="/amen" className="text-gray-800 hover:text-gray-600">Amenities</Link>
+          <Link href="/location" className="text-gray-800 hover:text-gray-600">Location</Link>
+          <Link href="/gallery" className="text-gray-800 hover:text-gray-600">Gallery</Link>
           <Link href="/contact" className="text-orange-600 hover:text-orange-400">Contact Us</Link>
         </nav>
         <div className="hidden md:flex items-center text-orange-600">
